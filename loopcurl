@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#while true; do sleep 1; curl $1; echo -e '\n\n\n\n'$(date);done
+while true; do sleep 1; curl $1;echo;done
