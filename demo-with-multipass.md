@@ -44,7 +44,10 @@ multipass exec k3s-node3 -- sudo su -c "/mnt/rancher/k3s agent --token-file /mnt
 
 **Dashboard**
 ```
-helm install kubernetes-dashboard stable/kubernetes-dashboard --namespace kube-system -f helm-values/dashboard-values.yml
+kubectl create ns kubernetes-dashboard
+helm install kubernetes-dashboard --namespace kubernetes-dashboard helm-charts/dashboard
+
+open "https://$(multipass info k3s-server | grep "IPv4" | awk -F' ' '{print $2}'):30001"
 ```
 
 ```

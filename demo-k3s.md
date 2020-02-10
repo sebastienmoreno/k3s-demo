@@ -45,7 +45,8 @@ ssh $SUDO_USERNAME@$SERVER_IP -i $KEY_LOCATION
 
 **Install Dashboard:**
 ```
-helm install kubernetes-dashboard stable/kubernetes-dashboard --namespace kube-system -f helm-values/dashboard-values.yml
+kubectl create ns kubernetes-dashboard
+helm install kubernetes-dashboard --namespace kubernetes-dashboard helm-charts/dashboard
 
 open "https://${SERVER_IP}:30001"
 ```

@@ -15,13 +15,15 @@ k3d create --publish 8081:30001@k3d-k3s-default-worker-0 --publish 8080:80 --wor
 export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
 ```
 
-# Helm init
+# Test deployment
 
 ```
-helm install kubernetes-dashboard stable/kubernetes-dashboard --namespace kube-system -f helm-values/dashboard-values.yml
+kubectl create ns kubernetes-dashboard
+helm install kubernetes-dashboard --namespace kubernetes-dashboard helm-charts/dashboard
 ```
 
 ```
+kubectl create ns test
 helm install test --namespace test helm-charts/simplenodewebapp
 ```
 
