@@ -3,7 +3,7 @@ REQUIREMENTS
 
 > In order to play the demo you will have to install the following tools:
 
-# For K3S
+# For k3s
 
 ## Install Kubectl
 
@@ -20,6 +20,17 @@ brew install kubernetes-cli
 ```
 
 > https://kubernetes.io/fr/docs/tasks/tools/install-kubectl/#installer-kubectl-sur-macos
+
+# k3sup installation
+
+```
+curl -sLS https://get.k3sup.dev | sh
+sudo install k3sup /usr/local/bin/
+
+k3sup --help
+```
+
+- https://github.com/alexellis/k3sup#download-k3sup-tldr
 
 
 ## Helm Installation
@@ -42,3 +53,18 @@ curl -L https://git.io/get_helm.sh | bash
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 
+# For local demo
+
+## Multipass
+Multipass is a VM manager of Ubuntu, working on Windows, MacOs and Linux:
+
+- https://multipass.run/
+
+## Vagrant
+Vagrant is a tool for building and managing virtual machine environments in a single workflow. 
+
+- https://www.vagrantup.com/downloads.html
+
+## Docker
+
+- https://www.docker.com/

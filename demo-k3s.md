@@ -8,23 +8,36 @@ Quick demontration of K3S with external VM
 ## Deploy Remote K3S cluster
 
 ```
-export SERVER_IP=184.73.57.227
-export NEXT_SERVER_IP=3.219.56.248
-export AGENT1_IP=3.81.98.247
-export AGENT2_IP=34.207.66.47
+export SERVER_IP=10.122.82.68
+export NEXT_SERVER_IP=10.122.82.69
+export AGENT1_IP=10.122.82.94
+export AGENT2_IP=10.122.82.88
 
-k3sup install --ip $SERVER_IP --ssh-key ~/.ssh/key.pem --user ec2-user
+#export KEY_LOCATION=~/.ssh/key.pem
+export KEY_LOCATION=~/.ssh/athena-default-keypair.pem
+export SUDO_USERNAME=ec2-user
 
-k3sup join --server-ip $SERVER_IP --ip $NEXT_SERVER_IP --user ec2-user --server-user ec2-user  --server --ssh-key ~/.ssh/key.pem
+# add the master node
+k3sup install --ip $SERVER_IP --ssh-key $KEY_LOCATION --user $SUDO_USERNAME --cluster
 
-k3sup join --server-ip $SERVER_IP --ip $AGENT1_IP --ssh-key ~/.ssh/key.pem --user ec2-user
+# add worker nodes
+k3sup join --server-ip $SERVER_IP --ip $AGENT1_IP --ssh-key $KEY_LOCATION --user $SUDO_USERNAME
 
-k3sup join --server-ip $SERVER_IP --ip $AGENT2_IP --ssh-key ~/.ssh/key.pem --user ec2-user
+k3sup join --server-ip $SERVER_IP --ip $AGENT2_IP --ssh-key $KEY_LOCATION --user $SUDO_USERNAME
 
+# add another master node
+k3sup join --server-ip $SERVER_IP --ip $NEXT_SERVER_IP --user $SUDO_USERNAME --server --ssh-key $KEY_LOCATION
+```
+
+**Verfications:**
+```
 export KUBECONFIG=$(PWD)/kubeconfig
 
 # Verification
 kubectl get nodes -o wide
+
+# check the master node
+ssh $SUDO_USERNAME@$SERVER_IP -i $KEY_LOCATION
 
 ```
 
