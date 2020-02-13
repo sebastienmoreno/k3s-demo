@@ -6,17 +6,21 @@ Quick demontration of K3S with external VM
 # K3S
 
 ## Deploy Remote K3S cluster
-
+**Preparation**
 ```
-export SERVER_IP=10.122.82.68
-export NEXT_SERVER_IP=10.122.82.69
-export AGENT1_IP=10.122.82.94
-export AGENT2_IP=10.122.82.88
+# Set your external IP VM for demo
+export SERVER_IP=_______IP_______
+export NEXT_SERVER_IP=_______IP_______
+export AGENT1_IP=_______IP_______
+export AGENT2_IP=_______IP_______
 
-#export KEY_LOCATION=~/.ssh/key.pem
-export KEY_LOCATION=~/.ssh/athena-default-keypair.pem
+# Set your keypair and user for ssh login:
+export KEY_LOCATION=~/.ssh/key.pem
 export SUDO_USERNAME=ec2-user
+```
 
+**Demo**
+```
 # add the master node
 k3sup install --ip $SERVER_IP --ssh-key $KEY_LOCATION --user $SUDO_USERNAME --cluster
 
@@ -29,7 +33,7 @@ k3sup join --server-ip $SERVER_IP --ip $AGENT2_IP --ssh-key $KEY_LOCATION --user
 k3sup join --server-ip $SERVER_IP --ip $NEXT_SERVER_IP --user $SUDO_USERNAME --server --ssh-key $KEY_LOCATION
 ```
 
-**Verfications:**
+**Verifications:**
 ```
 export KUBECONFIG=$(PWD)/kubeconfig
 
@@ -48,14 +52,14 @@ ssh $SUDO_USERNAME@$SERVER_IP -i $KEY_LOCATION
 kubectl create ns kubernetes-dashboard
 helm install kubernetes-dashboard --namespace kubernetes-dashboard helm-charts/dashboard
 
-open "https://${SERVER_IP}:30001"
+open "https://${AGENT1_IP}:30001"
 ```
 
 ```
 kubectl create ns test
-helm install test --namespace test --set ingress.host=${AGENT1_IP}.xip.io helm-charts/simplenodewebapp
+helm install test --namespace test --set ingress.host=${AGENT1_IP}.nip.io helm-charts/simplenodewebapp
 ```
 
 ```
-./loopcurl "http://${AGENT1_IP}.xip.io"
+./loopcurl "http://${AGENT1_IP}.nip.io"
 ```

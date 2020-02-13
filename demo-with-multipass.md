@@ -53,7 +53,7 @@ open "https://$(multipass info k3s-server | grep "IPv4" | awk -F' ' '{print $2}'
 ```
 kubectl create ns test
 
-helm install test --namespace test --set ingress.host=$(multipass info k3s-node1 | grep "IPv4" | awk -F' ' '{print $2}').xip.io helm-charts/simplenodewebapp
+helm install test --namespace test --set ingress.host=$(multipass info k3s-node1 | grep "IPv4" | awk -F' ' '{print $2}').nip.io helm-charts/simplenodewebapp
 
-curl http://$(multipass info k3s-node1 | grep "IPv4" | awk -F' ' '{print $2}').xip.io
+curl http://$(multipass info k3s-node1 | grep "IPv4" | awk -F' ' '{print $2}').nip.io
 ```

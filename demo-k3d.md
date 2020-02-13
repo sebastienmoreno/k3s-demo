@@ -28,6 +28,6 @@ helm install test --namespace test helm-charts/simplenodewebapp
 ```
 
 ```
-./loopcurl "http://$(ipconfig getifaddr en0).xip.io:8080"
+./loopcurl "http://localhost:8080"
 ```
 
