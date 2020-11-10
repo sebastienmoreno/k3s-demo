@@ -55,6 +55,7 @@ helm install kubernetes-dashboard --namespace kubernetes-dashboard helm-charts/d
 open "https://${AGENT1_IP}:30001"
 ```
 
+**Install test app:**
 ```
 kubectl create ns test
 helm install test --namespace test --set ingress.host=${AGENT1_IP}.nip.io helm-charts/simplenodewebapp
