@@ -33,6 +33,21 @@ k3sup --help
 - https://github.com/alexellis/k3sup#download-k3sup-tldr
 
 
+# k3d
+
+**Linux:**
+```
+curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+```
+
+**Mac:**
+```
+brew install k3d
+```
+
+- https://k3d.io/
+
+
 ## Helm Installation
 
 **Installation:**
