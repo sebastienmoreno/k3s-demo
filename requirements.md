@@ -65,7 +65,7 @@ curl -L https://git.io/get_helm.sh | bash
 
 **Add a default repository:**
 ```
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add stable https://charts.helm.sh/stable
 ```
 
 # For local demo
