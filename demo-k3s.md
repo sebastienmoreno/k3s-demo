@@ -15,7 +15,7 @@ export AGENT1_IP=_______IP_______
 export AGENT2_IP=_______IP_______
 
 # Set your keypair and user for ssh login:
-export KEY_LOCATION=~/.ssh/key.pem
+export KEY_LOCATION=~/.ssh/k3s-demo.pem
 export SUDO_USERNAME=ec2-user
 ```
 
