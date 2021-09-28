@@ -65,7 +65,7 @@ curl -L https://git.io/get_helm.sh | bash
 
 **Add a default repository:**
 ```
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add stable https://charts.helm.sh/stable
 ```
 
 # For local demo
@@ -83,3 +83,19 @@ Vagrant is a tool for building and managing virtual machine environments in a si
 ## Docker
 
 - https://www.docker.com/
+
+# Virtual Machine template
+
+In the demonstration we use AWS instances.
+Here are the description of the VM instances:
+- Linux type 2 AMI
+- type t2.large
+- 8 GB RAM
+- 20 GB SSD disk
+
+Ensure you have a security group configured with TCP inbound/outbound with following ports opened: 30001, 6443, 80
+
+For the demo we add custom installation:
+```sh
+yum install -y htop
+```
