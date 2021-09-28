@@ -75,13 +75,13 @@ kubectl get nodes -o wide
 
 # check the master node
 ssh $SUDO_USERNAME@$SERVER_IP -i $KEY_LOCATION
-
 ```
 
 ## Post-installation of cluster
 
 **Install Dashboard:**
-```
+
+```sh
 kubectl create ns kubernetes-dashboard
 helm install kubernetes-dashboard --namespace kubernetes-dashboard helm-charts/dashboard
 
@@ -89,11 +89,14 @@ open "https://${AGENT1_IP}:30001"
 ```
 
 **Install test app:**
-```
+
+```sh
 kubectl create ns test
 helm install test --namespace test --set ingress.host=${AGENT1_IP}.nip.io helm-charts/simplenodewebapp
 ```
 
-```
+**Test the app:**
+
+```sh
 ./loopcurl "http://${AGENT1_IP}.nip.io"
 ```
