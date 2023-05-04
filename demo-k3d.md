@@ -9,7 +9,7 @@ Requirements: Docker installed, k3d installed
 **Launch cluster:**
 
 ```sh
-k3d cluster create --agents 2 --port "8081:30001@agent[0]" --port "8080:80@loadbalancer"
+k3d cluster create --agents 2 --port 8081:30001@agent:0 --port 8080:80@loadbalancer
 ```
 
 **Use Kubeconfig:**
